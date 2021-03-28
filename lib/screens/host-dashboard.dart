@@ -90,7 +90,7 @@ class HostDashboard extends StatelessWidget {
                 child: ListView(
                   children: [
                     PaginatedDataTable(
-                      header: Text('Host(s) Summary'),
+                      header: Text('Hosts Summary', style: Theme.of(context).textTheme.headline4,),
                       rowsPerPage: 3,
                       columns: [
                         DataColumn(label: Text('Number')),
@@ -162,11 +162,11 @@ class _DataSource extends DataTableSource {
         }
       },
       cells: [
-        DataCell(Text(row.valueA.toString())),
-        DataCell(Text(row.valueB)),
-        DataCell(Text(row.valueC)),
-        DataCell(Text(row.valueD.toString())),
-        DataCell(Text(row.valueE.toString())),
+        DataCell(Text(row.valueA.toString(), style: Theme.of(context).textTheme.caption,)),
+        DataCell(Text(row.valueB, style: Theme.of(context).textTheme.caption,)),
+        DataCell(Text(row.valueC, style: Theme.of(context).textTheme.caption,)),
+        DataCell(Text(row.valueD.toString(), style: Theme.of(context).textTheme.caption,)),
+        DataCell(Text(row.valueE.toString(), style: Theme.of(context).textTheme.caption,)),
       ],
     );
   }

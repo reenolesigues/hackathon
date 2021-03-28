@@ -27,19 +27,25 @@ class HeartbeatChart extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
-              Text(
-                "Total Heartbeat",
-                style: Theme.of(context).textTheme.headline6,
-                // style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                    "Total Heartbeat",
+                    style: Theme.of(context).textTheme.headline6,
+                    // style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
               ),
               Expanded(
                 child: BarChart(series,
                     animate: true,
                 ),
               ),
-              Text(
-                "Time (hour)",
-                style: Theme.of(context).textTheme.bodyText2,
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  "Time (hour)",
+                  style: Theme.of(context).textTheme.bodyText2,
+                ),
               ),
             ],
           ),

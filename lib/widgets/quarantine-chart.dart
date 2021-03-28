@@ -16,29 +16,38 @@ class QuarantineChart extends StatelessWidget {
       )
     ];
 
-    return Container(
-      height: MediaQuery.of(context).size.height/3,
-      color: Colors.black38,
-      padding: EdgeInsets.all(20),
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              Text(
-                "Anomaly Count",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              Expanded(
-                child: BarChart(series,
-                    animate: true,
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, '/anomaly-quarantine'),
+      child: Container(
+        height: MediaQuery.of(context).size.height/3,
+        color: Colors.black38,
+        padding: EdgeInsets.all(20),
+        child: Card(
+          child: Padding(
+            padding: EdgeInsets.all(0),
+            child: Column(
+              children: <Widget>[
+                FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    "Anomaly Count",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
                 ),
-              ),
-              Text(
-                "Time (hour)",
-                style: Theme.of(context).textTheme.bodyText2,
-              ),
-            ],
+                Expanded(
+                  child: BarChart(series,
+                    animate: true,
+                  ),
+                ),
+                FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    "Time (hour)",
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

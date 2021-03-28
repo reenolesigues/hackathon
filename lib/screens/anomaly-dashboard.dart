@@ -50,18 +50,17 @@ class AnomalyDashboard extends StatelessWidget {
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.9,
-                // color: const Color(0xFF00FF00),
                 child: ListView(
                   padding: const EdgeInsets.fromLTRB(100, 30, 100, 0),
                   children: [
                     PaginatedDataTable(
-                      header: Text('Detected Anomalies'),
+                      header: Text('Quarantine View', style: Theme.of(context).textTheme.headline4,),
                       rowsPerPage: 6,
                       columns: [
                         DataColumn(label: Text('Anomaly Number')),
-                        DataColumn(label: Text('Anomaly')),
-                        DataColumn(label: Text('Host')),
                         DataColumn(label: Text('DateTime')),
+                        DataColumn(label: Text('Host')),
+                        DataColumn(label: Text('Anomaly')),
                       ],
                       source: _DataSource(context),
                     ),
@@ -95,12 +94,12 @@ class _Row {
 class _DataSource extends DataTableSource {
   _DataSource(this.context) {
     _rows = <_Row>[
-      _Row(1, 'Too much incoming request', 'demoserver02.homecredit.ph', generateDateAgnosticTime24Format(0)),
-      _Row(2, 'Unreachable host', 'demoserver01.homecredit.ph', generateDateAgnosticTime24Format(3)),
-      _Row(3, 'Deviating behaviour', 'demoserver01.homecredit.ph', generateDateAgnosticTime24Format(6)),
-      _Row(4, 'Deviating behaviour', 'demoserver03.homecredit.ph', generateDateAgnosticTime24Format(15)),
-      _Row(5, 'Deviating behaviour', 'demoserver03.homecredit.ph', generateDateAgnosticTime24Format(15)),
-      _Row(6, 'Deviating behaviour', 'demoserver02.homecredit.ph', generateDateAgnosticTime24Format(18)),
+      _Row(1, 'Spike in resource utilization', 'demoserver02.homecredit.ph', generateDateAgnosticTime24Format(0)),
+      _Row(2, 'Multiple server error occurrence', 'demoserver01.homecredit.ph', generateDateAgnosticTime24Format(3)),
+      _Row(3, 'Unusually high traffic', 'demoserver01.homecredit.ph', generateDateAgnosticTime24Format(6)),
+      _Row(4, 'Malicious payload', 'demoserver03.homecredit.ph', generateDateAgnosticTime24Format(15)),
+      _Row(5, 'Malformed IO packets', 'demoserver03.homecredit.ph', generateDateAgnosticTime24Format(15)),
+      _Row(6, 'Unusually high latency', 'demoserver02.homecredit.ph', generateDateAgnosticTime24Format(18)),
     ];
   }
 
@@ -126,10 +125,10 @@ class _DataSource extends DataTableSource {
         }
       },
       cells: [
-        DataCell(Text(row.valueA.toString())),
-        DataCell(Text(row.valueB)),
-        DataCell(Text(row.valueC)),
-        DataCell(Text(row.valueD.toString())),
+        DataCell(Text(row.valueA.toString(), style: Theme.of(context).textTheme.caption,)),
+        DataCell(Text(row.valueD.toString(), style: Theme.of(context).textTheme.caption,)),
+        DataCell(Text(row.valueC, style: Theme.of(context).textTheme.caption,)),
+        DataCell(Text(row.valueB, style: Theme.of(context).textTheme.caption,), showEditIcon: true, placeholder: true),
       ],
     );
   }

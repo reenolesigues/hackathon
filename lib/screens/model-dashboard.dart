@@ -36,7 +36,7 @@ class ModelDashboard extends StatelessWidget {
                 width: MediaQuery.of(context).size.width/4,
                 padding: EdgeInsets.fromLTRB(0, 0, 100, 0),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(10),
                   child: TextField(
                     decoration: InputDecoration(
                         labelText: "Search Model",
@@ -44,7 +44,9 @@ class ModelDashboard extends StatelessWidget {
                         focusColor: Colors.black12,
                         prefixIcon: Icon(Icons.search),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+                            borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                        )
+                    ),
                   ),
                 ),
               ),
@@ -96,13 +98,13 @@ class ModelDashboard extends StatelessWidget {
                 ),
               ),
               Container(
+                alignment: Alignment.center,
                 height: MediaQuery.of(context).size.height * 0.9,
-                // color: const Color(0xFF00FF00),
                 child: ListView(
                   padding: EdgeInsets.fromLTRB(100, 5, 100, 0),
                   children: [
                     PaginatedDataTable(
-                      header: Text('Hosts Summary'),
+                      header: Text('Model Status', style: Theme.of(context).textTheme.headline4,),
                       rowsPerPage: 3,
                       columns: [
                         DataColumn(label: Text('Number')),
@@ -167,9 +169,9 @@ class _DataSource extends DataTableSource {
         }
       },
       cells: [
-        DataCell(Text(row.valueA.toString())),
-        DataCell(Text(row.valueB)),
-        DataCell(Text(row.valueC)),
+        DataCell(Text(row.valueA.toString(), style: Theme.of(context).textTheme.caption,)),
+        DataCell(Text(row.valueB, style: Theme.of(context).textTheme.caption,)),
+        DataCell(Text(row.valueC, style: Theme.of(context).textTheme.headline6,)),
       ],
     );
   }
